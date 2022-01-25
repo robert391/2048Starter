@@ -25,6 +25,10 @@ public class Activity3Tester {
 		//testing the other slide right method
 		Board g = new Board();
 		g.populateOne();
+		g.populateOne();
+		g.populateOne();
+		g.populateOne();
+		g.populateOne();
 		System.out.println(g);
 		g.slideRight();
 		System.out.println(g);
