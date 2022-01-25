@@ -136,7 +136,7 @@ public class Board {
 
 	public void slideRight() {
 		for(int row = 0; row < board.length; row++) {
-			
+			slideRight(board[row]);
 		}
 		// go through 2D array, move all digits as far right as possible
 		//setup a loop to grab ONE row at a time from 2d array board
