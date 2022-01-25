@@ -4,7 +4,7 @@ public class Board {
  
 	private int[][] board; // holds state of game
 	private Random rnd = new Random(0); // setup random # generator
-	
+	private int size;
 	//What instance variable can you add to keep track of the size or the number of tiles occupied?
 	
 	/* default constructor for board */
@@ -24,8 +24,8 @@ public class Board {
 	 * 
 	 * Example:
 	 * 
-	 * { {1, 2, 3}, {4, 5, 6}} -> 1 2 3
-	 * 
+	 * { {1, 2, 3}, {4, 5, 6}} -> 
+	 * 1 2 3
 	 * 4 5 6
 	 */
 
@@ -34,7 +34,7 @@ public class Board {
 	// class implement the exact same method
 	// that its parent class has
 	public String toString() {
-		
+		String str = "";
 		/*
 		 * Use the String formatter to pad the numbers with leading 0s
 		 * so that the print out does not become jagged
@@ -47,10 +47,14 @@ public class Board {
 		
 		//setup loops to visit
 		//every spot possible
+		for(int row = 0; row < board.length; row++) {
+			for(int col = 0; col < board[0].length; col++) {
+				str = str + String.format("%04d", board[row][col]) + " ";
+			}
+			str = str + "\n";
+		}
 		
-		
-		
-		return "";
+		return str;
 	}
 
 	/*
@@ -64,17 +68,32 @@ public class Board {
 	 */
 
 	public void populateOne() {
-		
-		// is there an empty spot?
-		// for randomness, generate a row and column
-		// check if that tile is empty, if it is NOT empty,
-		// generate another set of row and column
-		// what happens if the entire board is full??! 
-		
-		
-		
+		int maxSize = board.length*board[0].length;
+		if(size < maxSize) {// is there an empty spot?
+			// for randomness, generate a row and column
+			int row = rnd.nextInt(board.length);
+			int col = rnd.nextInt(board[0].length);
 			
-
+			// check if that tile is empty, if it is NOT empty,
+		    // generate another set of row and column
+			while(board[row][col] != 0) {
+				row = rnd.nextInt(board.length);
+				col = rnd.nextInt(board[0].length);
+			}
+			
+			//checks whether to put a 2 or a 4
+			int val = rnd.nextInt(10);
+			System.out.println("val = " + val);
+			if(val == 8) {
+				board[row][col] = 4;
+			}else {
+				board[row][col] = 2;
+			}
+			
+			size++;
+		}
+		
+		// what happens if the entire board is full??! 
 	}
 
 	/*
@@ -89,7 +108,17 @@ public class Board {
 	 */
 
 	public void slideRight(int[] row) {
-		
+		for(int i = row.length-1; i >= 0; i--) {
+			if(row[i] != 0) {
+				for(int j = i; j < row.length; j++) {
+				if(j < row.length-1 && row[j+1] == 0) {
+						int temp = row[j];
+						row[j] = row[j+1];
+						row[j+1] = temp;
+					}
+				}
+			}
+		}
 
 	
 	}
@@ -290,5 +319,13 @@ public class Board {
 			}
 		}
 	}
-
+	
+	public void eraseBoard() {
+		for(int row = 0; row < board.length; row++) {
+			for(int col = 0; col < board[0].length; col++) {
+				board[row][col] = 0;
+			}
+		}
+		size = 0;
+	}
 }
