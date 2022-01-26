@@ -177,12 +177,11 @@ public class Board {
 		// grabbing a row from a 2D array
 		// if it's called arr then arr[i] grabs ONE row!
 	
-		
-		
 		//visit every single row in the 2D array
 		//call the slideLeft method that takes in one argument
-		
-		
+		for(int i = 0; i < board.length; i++) {
+			slideLeft(board[i]);
+		}
 	}
 
 	/**
@@ -190,9 +189,12 @@ public class Board {
 	 * elements in the given column number.
 	 */
 	public int[] getCol(int[][] data, int c) {
-		
+		int[] temp = new int[data.length];
 		//you can also add print out statements here
-		return new int[0];
+		for(int i = 0; i < data.length; i++) {
+			temp[i] = data[i][c];
+		}
+		return temp;
 		
 	}
 
@@ -205,6 +207,7 @@ public class Board {
 	public void slideUp(int[] arr) {
 		/* calls a helper method */
 		// do not rewrite logic you already have!
+		slideLeft(arr);
 	}
 
 	/*
@@ -214,17 +217,20 @@ public class Board {
 	 * You must use slideUp and getCol for full credit.
 	 */
 	public void slideUp() {
-		
+		int[] temp;
 		//visit every column index
-		//grab each column as an array using getCol -> keep track of it in a 1d array
+		for(int i = 0; i < board.length; i++) {
+			//grab each column as an array using getCol -> keep track of it in a 1d array
 		// variable/reference
-		//have slideLeft perform manipulation on the array
-		// copy over the 1D array representation of the column
-		// back to the 2D board array
-
-		
-		
-		
+			temp = getCol(board,i);
+			//have slideUp perform manipulation on the array
+			slideUp(temp);
+			// copy over the 1D array representation of the column
+		    // back to the 2D board array
+			
+			//.....
+		}
+			
 	}
 
 	public void slideDown(int[] arr) {

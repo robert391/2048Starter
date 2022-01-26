@@ -33,15 +33,32 @@ public class Activity3Tester {
 		g.slideRight();
 		System.out.println(g);
 		
+		//testing slideLeft
 		int[] sample5 = {0,0,0,4};
 		b.slideLeft(sample5);
+		//printArray(sample5);
 		printArray(sample5);
+		
+		//testing getColumn
+		int[][] sample6 = {
+				{4,1,2,8},
+				{0,6,9,7},
+				{1,8,3,2},
+				{2,4,3,9}
+		};
+		
+		int[] stor = b.getCol(sample6, 0);
+		printArray(stor);
+		
+		//test slideUp
+		b.slideUp(stor);
+		printArray(stor);
 		
 	}
 	public static void printArray(int[] arrays) {
 		String temp = "";
 		for(int i = 0; i < arrays.length; i++) {
-			temp += arrays[i];
+			temp += arrays[i]+",";
 		}
 		System.out.println(temp);
 	}
