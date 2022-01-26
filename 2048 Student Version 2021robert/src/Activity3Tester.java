@@ -33,6 +33,9 @@ public class Activity3Tester {
 		g.slideRight();
 		System.out.println(g);
 		
+		int[] sample5 = {0,0,0,4};
+		b.slideLeft(sample5);
+		
 		
 	}
 	public static void printArray(int[] arrays) {
