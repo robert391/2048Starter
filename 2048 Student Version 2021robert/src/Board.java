@@ -219,22 +219,24 @@ public class Board {
 	public void slideUp() {
 		int[] temp;
 		//visit every column index
-		for(int i = 0; i < board.length; i++) {
+		for(int i = 0; i < board[0].length; i++) {
 			//grab each column as an array using getCol -> keep track of it in a 1d array
-		// variable/reference
+		// variable/reference1
 			temp = getCol(board,i);
 			//have slideUp perform manipulation on the array
 			slideUp(temp);
 			// copy over the 1D array representation of the column
 		    // back to the 2D board array
-			
+			for(int j = 0; j < board.length; j++) {
+				board[j][i] = temp[j];
+			}
 			//.....
 		}
 			
 	}
 
 	public void slideDown(int[] arr) {
-
+		slideRight(arr);
 		
 	}
 
@@ -245,7 +247,15 @@ public class Board {
 	 */
 
 	public void slideDown() {
-
+		int[] temp;
+		for(int i = 0; i < board[0].length; i++) {
+			temp = getCol(board,i);
+			slideDown(temp);
+			
+			for(int j = 0; j < board.length; j++) {
+				board[j][i] = temp[j];
+			}
+		}
 	}
 
 	/*
