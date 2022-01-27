@@ -346,26 +346,39 @@ public class Board {
 	 */
 	public void left() {
 		//1) numbers slide to the left
+		slideLeft();
 		//2) combine
+		combineLeft();
 		//3) slide
+		slideLeft();
 	}
 
 	public void right() {
-
+		slideRight();
+		combineRight();
+		slideRight();
 	}
 
 	public void up() {
-
+		slideUp();
+		combineUp();
+		slideUp();
 	}
 
 	public void down() {
-
+		slideDown();
+		combineDown();
+		slideDown();
 	}
 	
 	
 
 	public boolean gameOver() {
-		return false;
+		if(size >= 16) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	public int[][] getBoard() {
