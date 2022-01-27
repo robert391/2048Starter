@@ -35,24 +35,66 @@ public class Activity3Tester {
 		
 		//testing slideLeft
 		int[] sample5 = {0,0,0,4};
-		b.slideLeft(sample5);
+		g.slideLeft(sample5);
 		//printArray(sample5);
 		printArray(sample5);
 		
 		//testing getColumn
 		int[][] sample6 = {
 				{4,1,2,8},
-				{0,6,9,7},
-				{1,8,3,2},
-				{2,4,3,9}
+				{0,6,9,0},
+				{1,0,3,2},
+				{2,4,3,0}
 		};
 		
-		int[] stor = b.getCol(sample6, 0);
+		int[] stor = g.getCol(sample6, 0);
 		printArray(stor);
 		
 		//test slideUp
-		b.slideUp(stor);
+		System.out.println("testing slide up");
+		g.slideUp(stor);
 		printArray(stor);
+		
+		g.slideUp();
+		System.out.println(g);
+		
+		//test slideDown
+		System.out.println("testing slide down");
+		g.slideDown(stor);
+		printArray(stor);
+		
+		g.slideDown();
+		System.out.println(g);
+		
+		//test combineRight
+		System.out.println("testing combine right");
+		g.combineRight();
+		System.out.println(g);
+		
+		//test combineLeft
+		System.out.println("testing combine left");
+		g.populateOne();
+		g.populateOne();
+		g.populateOne();
+		g.populateOne();
+		System.out.println(g);
+		g.combineLeft();
+		System.out.println(g);
+		
+		//test combineUp
+		System.out.println("testing combine up");
+		g.combineUp();
+		System.out.println(g);
+		
+		//test combineDown
+		System.out.println("testing combine down");
+		g.populateOne();
+		g.populateOne();
+		g.populateOne();
+		g.populateOne();
+		System.out.println(g);
+		g.combineDown();
+		System.out.println(g);
 		
 	}
 	public static void printArray(int[] arrays) {

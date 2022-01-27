@@ -4,8 +4,7 @@ public class Board {
  
 	private int[][] board; // holds state of game
 	private Random rnd = new Random(0); // setup random # generator
-	private int size;
-	//What instance variable can you add to keep track of the size or the number of tiles occupied?
+	private int size; // size or the number of tiles occupied
 	
 	/* default constructor for board */
 	// constructors must match exactly the name
@@ -230,7 +229,6 @@ public class Board {
 			for(int j = 0; j < board.length; j++) {
 				board[j][i] = temp[j];
 			}
-			//.....
 		}
 			
 	}
@@ -261,18 +259,29 @@ public class Board {
 	/*
 	 * Given the 2D array, board, combineRight will take adjacent numbers that
 	 * are the same and combine them (add them).
-	 * After adding them together, one of the numbers is zeroed out. For
-	 * example, if row 0 contained [0 0 4 4],
-	 * a call to combineRight will produce [0 0 0 8]. If row 1 contained [2 2 2
-	 * 2], a call to combineRight will
-	 * produce [0 4 0 4].
+	 * After adding them together, one of the numbers is zeroed out. For example, 
+	 * if row 0 contained [0 0 4 4], a call to combineRight will produce [0 0 0 8]. 
+	 * If row 1 contained [2 2 2,2], a call to combineRight will produce [0 4 0 4].
 	 * 
 	 * Notice that the left element is zeroed out.
 	 */
 
 	public void combineRight() {
-
+		for(int i = 0; i < board.length; i++) {
+			combineRight(board[i]);
+		}
 	}
+	
+	public void combineRight(int[] arr) {
+		for(int j = arr.length-1; j >= 1; j--) {
+			if(arr[j] != 0 && arr[j] == arr[j-1]) {
+				arr[j] = arr[j]+ arr[j-1];
+				arr[j-1] = 0;
+				size--;
+			}
+		}
+	}
+	
 
 	/*
 	 * same behavior as combineRight but the right element is zeroed out when
@@ -280,16 +289,35 @@ public class Board {
 	 */
 
 	public void combineLeft() {
-		
+		for(int i = 0; i < board.length; i++) {
+			combineLeft(board[i]);
+		}
 	}
 	
+	public void combineLeft(int[] arr) {
+		for(int j = 0; j < arr.length-1; j++) {
+			if(arr[j] != 0 && arr[j] == arr[j+1]) {
+				arr[j] = arr[j] + arr[j+1];
+				arr[j+1] = 0;
+				size--;
+			}
+		}
+	}
 	/*
 	 * same behavior as combineRight but the bottom element is zeroed out when
 	 * two elements are combined
 	 */
 
 	public void combineUp() {
-
+		int[] temp;
+		for(int i = 0; i < board[0].length; i++) {
+			temp = getCol(board,i);
+			combineLeft(temp);
+			
+			for(int j = 0; j < board.length; j++) {
+				board[j][i] = temp[j];
+			}
+		}
 	}
 
 	/*
@@ -298,7 +326,15 @@ public class Board {
 	 */
 
 	public void combineDown() {
-
+		int[] temp;
+		for(int i = 0; i < board[0].length; i++) {
+			temp = getCol(board,i);
+			combineRight(temp);
+			
+			for(int j = 0; j < board.length; j++) {
+				board[j][i] = temp[j];
+			}
+		}
 	}
 
 	

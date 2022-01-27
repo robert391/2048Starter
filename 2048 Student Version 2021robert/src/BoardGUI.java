@@ -113,6 +113,7 @@ public class BoardGUI extends JPanel implements KeyListener, ActionListener{
 				
 				break;
 			case 40: //down
+				//what to do if keycode is 40?
 				data.slideDown();
 				break;
 		}
