@@ -374,7 +374,7 @@ public class Board {
 	
 
 	public boolean gameOver() {
-		if(size >= 16) {
+		if(size >= board.length * board.length) {
 			return true;
 		}else {
 			return false;
@@ -387,9 +387,14 @@ public class Board {
 
 	// populate with a given 2d array
 	public void populate(int[][] arr) {
+		size = 0;
 		for (int r = 0; r < arr.length; r++) {
 			for (int c = 0; c < arr[r].length; c++) {
 				board[r][c] = arr[r][c];
+				//calculate size
+				if (board[r][c] != 0) {
+					size++;
+				}
 			}
 		}
 	}
